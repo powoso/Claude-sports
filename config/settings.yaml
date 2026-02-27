@@ -1,0 +1,44 @@
+# Sports Prediction Market System Configuration
+
+data:
+  cache_dir: ".cache/sports_data"
+  cache_ttl_hours: 6
+
+nfl:
+  seasons: [2021, 2022, 2023, 2024, 2025]
+  elo_k_factor: 20
+  elo_home_advantage: 48
+  elo_mean: 1500
+  epa_smoothing_window: 4  # games
+
+nba:
+  seasons: ["2023-24", "2024-25", "2025-26"]
+  net_rating_window: 10  # games rolling
+  pace_league_avg: 100.0
+  rest_penalty_b2b: -2.5  # net rating points
+  travel_penalty_per_1000mi: -0.5
+
+mlb:
+  seasons: [2023, 2024, 2025]
+  xwoba_smoothing_pa: 150
+  park_factor_regress_games: 81
+
+models:
+  monte_carlo_iterations: 10000
+  calibration_bins: 20
+  bayesian_chains: 4
+  bayesian_draws: 2000
+
+edge_detection:
+  min_edge_pct: 3.0        # minimum edge to flag (%)
+  kelly_fraction: 0.25      # quarter-Kelly sizing
+  max_position_pct: 5.0     # max portfolio allocation per bet
+  sharp_move_threshold: 2.0  # line movement in points to flag
+
+market:
+  kalshi_base_url: "https://trading-api.kalshi.com/trade-api/v2"
+  polymarket_base_url: "https://clob.polymarket.com"
+  price_refresh_seconds: 60
+
+weather:
+  noaa_api_base: "https://api.weather.gov"
